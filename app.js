@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 console.log('the environment is on ' + process.env.NODE_ENV)
-if ( process.env.NODE_ENV === 'prodcution') {
+if ( process.env.NODE_ENV === 'production') {
   mongoose.connect('mongodb://kadenphua:s8911202h@ds017185.mlab.com:17185/kaden-test')
 } else { mongoose.connect('mongodb://localhost/donut-shop')
 }
