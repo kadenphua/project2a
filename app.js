@@ -29,5 +29,5 @@ app.use(bodyParser.urlencoded({
 app.use('/users', usersRoutes)
 app.use('/api/users', usersAPIRoutes)
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 console.log('Server started')
