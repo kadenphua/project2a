@@ -16,9 +16,9 @@
   <ul id="all-user-list">
   <% allUsers.forEach(function(post) { %>
     <li>
-        <%= post.name %><br>
-        <%= post.email %><br>
-        <%= post.password %>
+        <%= post.local.name %><br>
+        <%= post.local.email %><br>
+        <%= post.local.password %>
     </li>
   <% }) %>
   </ul>
