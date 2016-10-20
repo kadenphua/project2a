@@ -40,18 +40,37 @@ userSchema.post('save', function () {
   // console.log('after the save, save successful')
 })
 
+userSchema.methods.authenticate = function (password, callback) {
+  console.log('given password is ' + password)
+  console.log('saved password is ' + this.local.password)
+  bcrypt.compare(password, this.local.password, function (err, isMatch) {
+    callback(null, isMatch)
+  })
+}
+
 var User = mongoose.model('User', userSchema)
 
-// var newUser = new User({
-//   local: {
-//     email: 'primaulia@gmail.com',
-//     password: 'test123'
-//   }
-// })
+// User.methods.sayName = function () {
+//   console.log(this)
+//   console.log('my name is ' + this.local.name)
+// }
+var newUser = new User({
+  local: {
+    email: 'primaulia@gmail.com',
+    password: 'test123'
+  }
+})
+
+newUser.save(function (err, newUser) {
+  if (err) console.log(err.message)
+  // console.log('new user saved')
+  newUser.authenticate('test321', function (err, authenticated) {
+    if (err) console.log('not authenticated')
+    console.log('auth is ' + authenticated)
+    if (authenticated) console.log('user is authenticated')
+  })
+})
 //
-// newUser.save(function (err) {
-//   if (err) console.log(err.message)
-//   // console.log('new user saved')
-// })
+// newUser.sayName()
 
 module.exports = User
